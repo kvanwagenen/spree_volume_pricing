@@ -1,15 +1,24 @@
 <% display_percent ||= false %>
 <% if product.price > 0 and product.master.volume_prices.present? %>
-<div id="bulk-discount">
-  <h6><%= t(:bulk_discount) %></h6>
-  <table>
+<div id="volume-pricing">
+	<div id="volume-pricing-title"><%= t(:volume_pricing) %></div>
+	<ul class="volume-prices">
 	<% product.master.volume_prices.each do |v| %>
-	<%= content_tag(:tr) do %>
-	<%= content_tag :td, (v.open_ended? ? v.range : "#{v.range.to_range.begin}–#{v.range.to_range.end}") %>
-	<%= content_tag :td, money(v.amount)%>
-	<%= content_tag(:td, "%i%" % ((1.0 - v.amount / product.master.price) * 100.0).round) if display_percent %>
+		<li class="volume-price">
+			<div class="range"><%= (v.open_ended? ? v.range : "#{v.range.to_range.begin}–#{v.range.to_range.end}") %></div>
+			<div class="price"><%= money(v.amount) %></div>
+			<div class="percent"><%= "%i%" % ((1.0 - v.amount / product.master.price) * 100.0).round if display_percent %></div>
+		</li>
 	<% end %>
-	<% end %>  	
-  </table>
+	</ul>
 </div>
+<script>
+$(function(){
+	$volumePrices = $('.volume-prices')
+	$volumePrices.addClass("collapse");
+	$('#volume-pricing-title').click(function(e){
+		$volumePrices.collapse('toggle');
+	});
+})
+</script>
 <%end%>

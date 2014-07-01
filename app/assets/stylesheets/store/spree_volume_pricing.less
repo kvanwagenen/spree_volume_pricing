@@ -1,0 +1,46 @@
+@volume-pricing-color: @brand-info;
+
+#volume-pricing {
+	.center-block;
+	color: white;
+	max-width: 110px;
+
+	#volume-pricing-title {
+		font-size: 12px;
+		width: 100%;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		padding-top: 6px;
+		padding-bottom: 6px;
+		background-color: @volume-pricing-color;
+
+		&:hover {
+			background-color: darken(@volume-pricing-color, 10%);
+			cursor: pointer;
+		}
+	}
+
+	.volume-price {
+		.clearfix;
+		font-size: 12px;
+		padding-top: 2px;
+		padding-bottom: 2px;
+	}
+
+	.volume-prices {
+		background-color: lighten(@volume-pricing-color, 10%);
+		margin-bottom: 0px;
+	}
+
+	.range {
+		.make-xs-column(6, 0);
+	}
+
+	.price {
+		.make-xs-column(6, 0);
+	}
+
+	.percent {
+		width: 0%;
+	}
+}

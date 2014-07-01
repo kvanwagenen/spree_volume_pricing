@@ -1,0 +1,2 @@
+object @volume_price
+attributes *volume_price_attributes
