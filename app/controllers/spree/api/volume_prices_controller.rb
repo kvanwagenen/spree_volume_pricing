@@ -12,7 +12,7 @@ module Spree
         if params[:ids]
           @volume_prices = Spree::VolumePrice.where(:id => params[:ids].split(','))
         else
-          @volume_prices = Spree::VolumePrice.scoped.ransack(params[:q]).result
+          @volume_prices = Spree::VolumePrice.where(:variant_id => @variant.id).scoped.ransack(params[:q]).result
         end
         respond_with(@volume_prices)
       end
