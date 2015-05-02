@@ -8,6 +8,16 @@ routes = lambda do
 
     delete '/volume_prices/:id', :to => "volume_prices#destroy", :as => :volume_price
   end
+
+  namespace :api do
+    resources :products do
+      resources :variants do
+        resources :volume_prices do
+          put :update_batch
+        end
+      end
+    end
+  end
 end
 
 if Spree::Core::Engine.respond_to?(:add_routes)
